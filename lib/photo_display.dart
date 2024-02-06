@@ -35,23 +35,31 @@ class _PhotoDisplayState extends State<PhotoDisplay> {
       ),
       body: Column(
         children: [
-          FutureBuilder(
-            future: getApiPost(),
-            builder: (BuildContext context,
-              AsyncSnapshot<List<Photosdata2>> snapshot) {
-              if(!snapshot.hasData){
-                return Center(
-                  child: Text("Loading"),
-                );
-              }
-              else{
-                return ListView.builder(
-                    itemCount: postList.length,
-                    itemBuilder: (context,index)
-                    {return Text(index.toString());});
-              }
-          },
+          Expanded(
+            child: FutureBuilder(
+              future: getApiPost(),
+              builder: (BuildContext context,
+                AsyncSnapshot<List<Photosdata2>> snapshot) {
+                if(!snapshot.hasData){
+                  return Center(
+                    child: Text("Loading"),
+                  );
+                }
+                else{
+                  return ListView.builder(
+                      itemCount: postList.length,
+                      itemBuilder: (context,index)
+                      {
+                      return Column(
+                        children: [
+                          Text(postList[index].id.toString())
+                        ],
+                      );
+                      });
+                }
+            },
 
+            ),
           )
         ],
       ),
