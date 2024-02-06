@@ -1,8 +1,7 @@
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:photo_from_api/PhotosData.dart';
-import 'package:photo_from_api/photo_details.dart';
+import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
 
 class PhotoDisplay extends StatefulWidget {
@@ -13,14 +12,14 @@ class PhotoDisplay extends StatefulWidget {
 }
 
 class _PhotoDisplayState extends State<PhotoDisplay> {
-  List<PhotosData> postList = [];
-  Future<List<PhotosData>> getApiPost() async {
+  List<Photosdata2> postList = [];
+  Future<List<Photosdata2>> getApiPost() async {
     final response = await http
         .get(Uri.parse("https://jsonplaceholder.typicode.com/photos"));
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body.toString());
       for (Map i in data) {
-        postList.add(PhotosData.fromJson(i));
+        postList.add(Photosdata2.fromJson(i));
       }
       return postList;
     } else {
@@ -34,20 +33,28 @@ class _PhotoDisplayState extends State<PhotoDisplay> {
       appBar: AppBar(
         title: const Text("Photo Gallary App"),
       ),
-      body: ListView.builder(itemBuilder: (context, index) {
-        return ListTile(
-          leading: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PhotoDetails()));
-              },
-              child: const Image(image: AssetImage("images/laptop.jpg"))),
-          title: const Text("Title"),
-          subtitle: const Text("This is subtitle"),
-        );
-      }),
+      body: Column(
+        children: [
+          FutureBuilder(
+            future: getApiPost(),
+            builder: (BuildContext context,
+              AsyncSnapshot<List<Photosdata2>> snapshot) {
+              if(!snapshot.hasData){
+                return Center(
+                  child: Text("Loading"),
+                );
+              }
+              else{
+                return ListView.builder(
+                    itemCount: postList.length,
+                    itemBuilder: (context,index)
+                    {return Text(index.toString());});
+              }
+          },
+
+          )
+        ],
+      ),
     );
   }
 }
