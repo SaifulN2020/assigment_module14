@@ -26,7 +26,15 @@ class _PhotoDetailsState extends State<PhotoDetails> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("600*600")],
+                  children: [
+                    Text(
+                      "600*600",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    )
+                  ],
                 ),
               ),
             ),
