@@ -22,6 +22,13 @@ class _PhotoDetailsState extends State<PhotoDetails> {
               width: double.infinity,
               height: 100,
               color: Colors.pinkAccent,
+              child: const Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [Text("600*600")],
+                ),
+              ),
             ),
             const Text("Title :"),
             const Text("ID :")

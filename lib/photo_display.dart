@@ -3,6 +3,7 @@ import 'package:photo_from_api/PhotosData.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:photo_from_api/photo_details.dart';
 
 class PhotoDisplay extends StatefulWidget {
   const PhotoDisplay({Key? key}) : super(key: key);
@@ -33,37 +34,46 @@ class _PhotoDisplayState extends State<PhotoDisplay> {
       appBar: AppBar(
         title: const Text("Photo Gallary App"),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: FutureBuilder(
-              future: getApiPost(),
-              builder: (BuildContext context,
-                AsyncSnapshot<List<Photosdata2>> snapshot) {
-                if(!snapshot.hasData){
-                  return Center(
-                    child: Text("Loading"),
-                  );
-                }
-                else{
-                  return ListView.builder(
-                      itemCount: postList.length,
-                      itemBuilder: (context,index)
-                      {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(postList[index].title.toString())
-                        ],
-                      );
-                      });
-                }
-            },
-
-            ),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: FutureBuilder(
+                future: getApiPost(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Photosdata2>> snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: Text("Loading"),
+                    );
+                  } else {
+                    return ListView.builder(
+                        itemCount: postList.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PhotoDetails()));
+                              },
+                              child: Image(
+                                image: NetworkImage(
+                                    postList[index].thumbnailUrl.toString()),
+                              ),
+                            ),
+                            title: Text(postList[index].title.toString()),
+                          );
+                        });
+                  }
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

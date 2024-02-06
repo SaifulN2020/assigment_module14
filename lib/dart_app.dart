@@ -17,7 +17,7 @@ class _DartAppState extends State<DartApp> {
               backgroundColor: Colors.blue,
               titleTextStyle: TextStyle(fontSize: 24, color: Colors.white),
               centerTitle: true)),
-      home: PhotoDisplay(),
+      home: const PhotoDisplay(),
     );
   }
 }
