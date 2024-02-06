@@ -51,8 +51,10 @@ class _PhotoDisplayState extends State<PhotoDisplay> {
                       itemBuilder: (context,index)
                       {
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(postList[index].id.toString())
+                          Text(postList[index].title.toString())
                         ],
                       );
                       });
