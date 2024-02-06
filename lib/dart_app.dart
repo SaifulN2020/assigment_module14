@@ -11,15 +11,13 @@ class DartApp extends StatefulWidget {
 class _DartAppState extends State<DartApp> {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-theme: ThemeData(
-  appBarTheme: AppBarTheme(
-    backgroundColor: Colors.blue,
-    titleTextStyle: TextStyle(fontSize: 24,color: Colors.white)
-  )
-),
+    return MaterialApp(
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.blue,
+              titleTextStyle: TextStyle(fontSize: 24, color: Colors.white),
+              centerTitle: true)),
       home: PhotoDisplay(),
     );
-
   }
 }

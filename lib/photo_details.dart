@@ -11,7 +11,9 @@ class _PhotoDetailsState extends State<PhotoDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Photo Details"),),
+      appBar: AppBar(
+        title: const Text("Photo Details"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -21,8 +23,8 @@ class _PhotoDetailsState extends State<PhotoDetails> {
               height: 100,
               color: Colors.pinkAccent,
             ),
-            const Text("Title"),
-            const Text("ID-4")
+            const Text("Title :"),
+            const Text("ID :")
           ],
         ),
       ),
