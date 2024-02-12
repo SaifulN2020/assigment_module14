@@ -33,7 +33,8 @@ class _PhotoDetailsState extends State<PhotoDetails> {
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
-                    )
+                    ),
+                    Text("How to show data from api link")
                   ],
                 ),
               ),
